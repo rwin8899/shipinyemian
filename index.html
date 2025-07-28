@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RWIN 中转页</title>
+  <title>RWIN Trung chuyển</title>
   <style>
     html, body {
       margin: 0; padding: 0;
       height: 100%;
       font-family: sans-serif;
       overflow: hidden;
+      background: black;
     }
 
     video#bgvid {
@@ -21,7 +22,7 @@
       z-index: -1;
     }
 
-    .content {
+    .content, .fake-content {
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -30,8 +31,7 @@
       z-index: 5;
     }
 
-    .content a.button {
-      display: inline-block;
+    .button {
       margin-top: 20px;
       padding: 15px 30px;
       background: #ffcc00;
@@ -40,6 +40,11 @@
       border-radius: 8px;
       text-decoration: none;
       font-size: 18px;
+      display: none;
+    }
+
+    .fake-content {
+      display: none;
     }
   </style>
 </head>
@@ -49,10 +54,42 @@
     <source src="bg.mp4" type="video/mp4">
   </video>
 
+  <!-- 真实跳转区域 -->
   <div class="content">
-    <h1>Chào mừng đến với RWIN</h1>
-    <a class="button" href="https://rwin.com">Truy cập ngay</a>
+    <h1 id="message">Đang kiểm tra...</h1>
+    <a id="go-button" class="button" href="#" target="_blank">Truy cập ngay</a>
   </div>
+
+  <!-- 伪装页 -->
+  <div class="fake-content" id="fake">
+    <h1>Trang đang được nâng cấp</h1>
+    <p>Vui lòng quay lại sau.</p>
+  </div>
+
+  <script>
+    const ua = navigator.userAgent.toLowerCase();
+    const botKeywords = ["facebook", "google", "bot", "crawler", "spider", "preview"];
+    const isIframe = window.top !== window.self;
+    const isBot = botKeywords.some(k => ua.includes(k));
+
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const allowList = ["abc123", "vip999", "rwin2025"];
+
+    const message = document.getElementById("message");
+    const button = document.getElementById("go-button");
+    const fake = document.getElementById("fake");
+    const content = document.querySelector(".content");
+
+    if (!isIframe && !isBot && allowList.includes(code)) {
+      message.textContent = "Chào mừng bạn!";
+      button.href = "https://rwin.com";  // 真实目标地址
+      button.style.display = "inline-block";
+    } else {
+      content.style.display = "none";
+      fake.style.display = "block";
+    }
+  </script>
 
 </body>
 </html>
