@@ -1,137 +1,91 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Ẩm thực Việt Nam</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Top món ăn Việt bạn không thể bỏ lỡ!">
-  <meta property="og:image" content="thumb.jpg">
-  <meta property="og:description" content="Khám phá những món ăn ngon nhất Việt Nam được đề xuất bởi người địa phương.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RWIN - Món ăn Việt Nam</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
       margin: 0; padding: 0;
-      background: #fffbe6;
-      color: #333;
+      font-family: sans-serif;
+      background-color: #fffbe6;
+      overflow-x: hidden;
+    }
+    video#bgvid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
     }
     header {
-      background-color: #ffcc00;
-      padding: 1rem;
+      background: #fcd431;
+      padding: 20px;
       text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #222;
     }
-    .food-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
-    .food-item {
+    .food-card {
       background: #fff;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      width: 200px;
       overflow: hidden;
+      text-align: center;
     }
-    .food-item img {
+    .food-card img {
       width: 100%;
-      height: 160px;
+      height: 120px;
       object-fit: cover;
     }
-    .food-item h3 {
-      margin: 0.5rem;
-      font-size: 1.1rem;
+    .food-card h3 {
+      margin: 10px;
+      font-size: 18px;
     }
-    .button-container {
+    .status {
       text-align: center;
-      margin: 2rem 0;
+      margin: 30px 0;
+      font-size: 20px;
+      color: red;
     }
-    .button-container a {
-      display: inline-block;
+    .jump-button {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .jump-button a {
+      padding: 12px 28px;
       background: #ffcc00;
-      color: black;
-      padding: 15px 30px;
-      border-radius: 8px;
+      color: #000;
       font-weight: bold;
       font-size: 18px;
+      border-radius: 8px;
       text-decoration: none;
-      display: none;
     }
-    .footer {
+    footer {
       text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #666;
+      margin: 40px 0 10px;
+      font-size: 14px;
+      color: #999;
     }
-    .socials i {
-      margin: 0 8px;
-      color: #333;
-    }
-    .socials {
+    .social-icons {
       margin-top: 10px;
     }
-    .maintain {
-      text-align: center;
-      padding: 2rem;
-      color: red;
-      font-size: 1.2rem;
-      display: none;
+    .social-icons a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 20px;
     }
   </style>
-</head>
-<body>
-
-  <header>
-    <h1>Top món ăn Việt được đề xuất</h1>
-  </header>
-
-  <div class="food-list">
-    <div class="food-item">
-      <img src="pho.jpg" alt="Phở Hà Nội">
-      <h3>Phở Hà Nội</h3>
-    </div>
-    <div class="food-item">
-      <img src="bunbo.jpg" alt="Bún bò Huế">
-      <h3>Bún bò Huế</h3>
-    </div>
-    <div class="food-item">
-      <img src="banhmi.jpg" alt="Bánh mì">
-      <h3>Bánh mì</h3>
-    </div>
-    <div class="food-item">
-      <img src="comtam.jpg" alt="Cơm tấm">
-      <h3>Cơm tấm</h3>
-    </div>
-  </div>
-
-  <div class="maintain" id="maintainMsg">Trang đang được bảo trì...</div>
-
-  <div class="button-container">
-    <a id="jumpBtn" href="https://rwin.com">Truy cập trang chính</a>
-  </div>
-
-  <div class="footer">
-    <p>© 2025 rwingood.pages.dev</p>
-    <div class="socials">
-      <i class="fab fa-facebook"></i>
-      <i class="fab fa-telegram"></i>
-      <i class="fab fa-twitter"></i>
-    </div>
-  </div>
-
-  <script>
-    const validCodes = ['rwin88', 'winvn', '123vip', 'free68'];
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
-
-    const jumpBtn = document.getElementById('jumpBtn');
-    const maintainMsg = document.getElementById('maintainMsg');
-
-    if (code && validCodes.includes(code)) {
-      jumpBtn.style.display = 'inline-block';
-    } else {
-      maintainMsg.style.display = 'block';
-    }
-  </script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -145,20 +99,75 @@
   <!-- Facebook Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){
-      if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      if(f.fbq)return;n=f.fbq=function(){n.callMethod ?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
       n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)
     }(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '123456789012345'); 
+    fbq('init', 'XXXXXXXXXXXXXXX');
     fbq('track', 'PageView');
   </script>
 
-  <!-- Simple Site Stats -->
-  <script src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-X"></script>
+  <!-- Simple Analytics -->
+  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" /></noscript>
+</head>
 
+<body>
+
+  <video autoplay muted loop playsinline id="bgvid" poster="poster.jpg">
+    <source src="bg.mp4" type="video/mp4">
+  </video>
+
+  <header>Top món ăn Việt được đề xuất</header>
+
+  <div class="container">
+    <div class="food-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Pho-Bo-Ha-Noi.jpg" alt="Phở Hà Nội">
+      <h3>Phở Hà Nội</h3>
+    </div>
+    <div class="food-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Bun_bo_Hue.jpg" alt="Bún bò Huế">
+      <h3>Bún bò Huế</h3>
+    </div>
+    <div class="food-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Banh_mi_thit.jpg" alt="Bánh mì">
+      <h3>Bánh mì</h3>
+    </div>
+    <div class="food-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/C%C6%A1m_t%E1%BA%A5m.jpg" alt="Cơm tấm">
+      <h3>Cơm tấm</h3>
+    </div>
+  </div>
+
+  <div class="status" id="statusText">Trang đang được bảo trì...</div>
+
+  <div class="jump-button" id="jumpBtn">
+    <a href="https://rwin.com">Truy cập ngay</a>
+  </div>
+
+  <footer>
+    © 2025 rwingood.pages.dev
+    <div class="social-icons">
+      <a href="#"><span>📘</span></a>
+      <a href="#"><span>🐦</span></a>
+      <a href="#"><span>📸</span></a>
+    </div>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const validCodes = ['abc123', 'xxyyzz', 'vn01', 'hotvn', 'rwin', 'quatang']; // ← 你可以添加更多合法 code
+
+    if (code && validCodes.includes(code)) {
+      document.getElementById('jumpBtn').style.display = 'block';
+      document.getElementById('statusText').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
