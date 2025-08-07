@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RWIN Chính Thức</title>
+
+  <!-- 🔒 反爬虫检测并跳转到 fake.html -->
+  <script>
+    (function () {
+      const ua = navigator.userAgent.toLowerCase();
+      const suspicious = [
+        'bot', 'crawl', 'spider', 'facebookexternalhit',
+        'facebot', 'slurp', 'bingpreview', 'python', 'curl', 'wget'
+      ];
+      for (let i = 0; i < suspicious.length; i++) {
+        if (ua.includes(suspicious[i])) {
+          window.location.href = "/fake.html";
+          break;
+        }
+      }
+    })();
+  </script>
+
   <style>
     html, body {
       margin: 0; padding: 0;
@@ -53,4 +71,3 @@
   </div>
 </body>
 </html>
-
